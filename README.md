@@ -4,7 +4,7 @@
  * Autor: Miguel Ángel Fernández
  * Tutor: Dr. Felipe Ortega
  * Titulación: Máster en Data Science, URJC
- * Curso académico: 2020/21
+ * Curso académico: 2022/23
  * Formato: LATEX
 
 ## Dependecias e instalación
