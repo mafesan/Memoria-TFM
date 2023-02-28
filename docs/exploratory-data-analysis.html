@@ -107,13 +107,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <body>
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full toc-left">
 <div id="quarto-sidebar-toc-left" class="sidebar toc-left">
   <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
 
   <ul>
-  <li><a href="#data-overview" id="toc-data-overview" class="nav-link active" data-scroll-target="#data-overview">Data overview</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview">Data overview</a></li>
   <li><a href="#data-curation-identities-management" id="toc-data-curation-identities-management" class="nav-link" data-scroll-target="#data-curation-identities-management">Data curation: identities management</a></li>
   <li><a href="#initial-exploration" id="toc-initial-exploration" class="nav-link" data-scroll-target="#initial-exploration">Initial exploration</a></li>
   <li><a href="#objectives-goals-and-questions" id="toc-objectives-goals-and-questions" class="nav-link" data-scroll-target="#objectives-goals-and-questions">Objectives: Goals and questions</a>
@@ -157,15 +158,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#heuristic-terms" id="toc-heuristic-terms" class="nav-link" data-scroll-target="#heuristic-terms">Heuristic terms</a></li>
   </ul></li>
-  <li><a href="#correlation-after-transforming-the-variabels" id="toc-correlation-after-transforming-the-variabels" class="nav-link" data-scroll-target="#correlation-after-transforming-the-variabels">Correlation after transforming the variabels</a></li>
+  <li><a href="#correlation-after-transforming-the-variables" id="toc-correlation-after-transforming-the-variables" class="nav-link" data-scroll-target="#correlation-after-transforming-the-variables">Correlation after transforming the variables</a></li>
   <li><a href="#imbalanced-data" id="toc-imbalanced-data" class="nav-link" data-scroll-target="#imbalanced-data">Imbalanced data</a></li>
   </ul></li>
   </ul>
 </nav>
 </div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -184,11 +185,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<a class="btn btn-primary" href="https://github.com/mafesan/2021-tfm-code/blob/main/revelio/exploratory-data-analysis.ipynb" role="button" target="_blank"> Go to original Notebook</a>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Wikimedia Foundation has the <a href="https://wikimedia.biterg.io/">Wikimedia Tech community metrics dashboard</a>, which is a running GrimoireLab instance maintained by Bitergia dedicated to get activity metrics from the Wikimedia Tech community. In their <a href="https://www.mediawiki.org/wiki/Community_metrics">public documentation</a> it is linked to the list of repositories they are tracking for their community metrics dashboard.</p>
 <p>I decided to set up a local GrimoireLab instance with a <a href="https://github.com/mafesan/2021-tfm-code/blob/main/default-grimoirelab-settings/projects.json">subset of the projects</a>. As the main goal of this project is to detect automated accounts out of human accounts, I decided to apply a first filter to exclude most of Wikimedia’s research projects. Research projects usually don’t have the desired scale nor the level of activity required for the classification stage. Also, the results could not be as much generalized to other projects and communities.</p>
 <p>As for the selected data sources to analyze, this project is focused on the data from Git. Some of the selected repositories were stored on GitHub, others were stored in a Wikimedia-managed Gerrit instance.</p>
-<section id="data-overview" class="level3">
-<h3 class="anchored" data-anchor-id="data-overview">Data overview</h3>
+</section>
+<section id="data-overview" class="level2">
+<h2 class="anchored" data-anchor-id="data-overview">Data overview</h2>
 <p>GrimoireLab downloads each Git repository and parses the Git log, storing all the history of commits. From this record per repository, GrimoireLab composes a JSON document per commit, with a set of fields that reflects the information associated with it, such as the unique identifier <em>hash</em>, the number of modified lines, the number of modified files, the commit message, and more. Then, there is another internal process where this data gets complemented with extra fields, such as the identity information matched with the one from the identity management system and some pre-processed fields that allow aggregating the data in a simpler way in Kibana, the visualization layer form the Elastic stack.</p>
 <p>Summarizing, the <code>git</code> index stores one document per commit, with a set of fields whose meaning is described in the corresponding <a href="https://github.com/chaoss/grimoirelab-elk/blob/master/schema/git.csv">data schema</a>.</p>
 <p>The extracted data considers Git commits submitted from January 1st, 2008 to September 15th, 2021. From the configured repositories, we have logs from 2,876 out of 2,988 repositories.</p>
@@ -199,8 +205,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 </section>
-<section id="data-curation-identities-management" class="level3">
-<h3 class="anchored" data-anchor-id="data-curation-identities-management">Data curation: identities management</h3>
+<section id="data-curation-identities-management" class="level2">
+<h2 class="anchored" data-anchor-id="data-curation-identities-management">Data curation: identities management</h2>
 <p>The next step is to curate the identities’ information. The GrimoireLab tool managing this process, SortingHat, offers mechanisms to automatically improve some key data.</p>
 <p>Regarding account-merging, SortingHat offers many possibilities to merge profiles based on different fields from individuals (email, name and username) both individually or jointly. As we are not assuming any information, the safest approach was to merge profiles by their email. That is, if there are two or more individuals using the same email account, they are merged into the same profile.</p>
 <p>Then, it comes the affiliation information. SortingHat offers a way to automatically enroll individuals in an organization based on the email domain from the profile. This is done by using an organization-domain map (e.g.: Domain is linked to the organization “Wikimedia Foundation”.</p>
@@ -208,13 +214,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In order to identify which individuals were bots, I followed two approaches: * The first step consisted of taking all the accounts which were already identified as “Bots” by the Wikimedia tech community itself in a dedicated <a href="https://wikimedia.biterg.io/app/kibana#/dashboard/Affiliations">Affiliations dashboard</a>, filtering in Bot individuals (<code>author_bot:true</code>) from their ElasticSearch <code>git</code> index. * Second, I manually reviewed the rest of the individuals to identify potential bots and then confirm they were looking at their activity. A total of 41 bot individuals were identified, out of 16,284. With this information, I composed a <a href="https://github.com/mafesan/2021-tfm-code/blob/main/default-grimoirelab-settings/identities.yml">SortingHat-supported file</a> with the information of each Bot individual, for replication purposes.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/contributors.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Number of active contributors</figcaption><p></p>
+<p><img src="imgs/bot-profile.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Example of a profile marked as Bot in HatStall, the current interface for SortingHat</figcaption><p></p>
 </figure>
 </div>
 </section>
-<section id="initial-exploration" class="level3">
-<h3 class="anchored" data-anchor-id="initial-exploration">Initial exploration</h3>
+<section id="initial-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="initial-exploration">Initial exploration</h2>
 <p>GrimoireLab downloads each Git repository and parses the Git log, storing all the history of commits. From this record per repository, GrimoireLab composes a JSON document per commit, with a set of fields that reflects the information associated with it, such as the unique identifier (<code>hash</code>), the number of modified lines, the number of modified files, the commit message, and more. Then, there is another internal process where this data gets complemented with extra fields, such as the identity information matched with the one from the identity management system and some pre-processed fields that allow aggregating the data in a simpler way in Kibana, the visualization layer form the Elastic stack.</p>
 <p>Summarizing, the <strong>git</strong> index stores one document per commit, with a set of fields whose meaning is described in the corresponding <a href="https://github.com/chaoss/grimoirelab-elk/blob/master/schema/git.csv">data schema</a>.</p>
 <p>For the selected period of time, these were the overall numbers in terms of commits:</p>
@@ -222,6 +228,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <figure class="figure">
 <p><img src="imgs/summary.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Overall numbers</figcaption><p></p>
+</figure>
+</div>
+<p>And these were the overall numbers in terms of contributors:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/contributors.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Number of active contributors</figcaption><p></p>
 </figure>
 </div>
 <p>Here are the number of active contributors over time (monthly), splited by those tagged as “Bots” and the those who were not (note that the graph is shown in logaritmic scale):</p>
@@ -300,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="extracting-the-data-from-elasticsearch" class="level2">
 <h2 class="anchored" data-anchor-id="extracting-the-data-from-elasticsearch">Extracting the data from ElasticSearch</h2>
-<p>The piece of code in charge of retrieving this data is the script <code>ES-extract-datasets.py</code>.</p>
+<p>The piece of code in charge of retrieving this data is the script <a href="https://github.com/mafesan/2021-tfm-code/blob/main/revelio/ES-extract-datasets.py"><code>ES-extract-datasets.py</code></a>.</p>
 <p>A first process executes a <em>bucket</em> aggregation using the unique identifier for the contributor identities, <code>author_uuid</code>. This first query produces a list of contributors sending commits during a given period of time. Then, a second process executes a query for each author to retrieve the history of commits, asking for the fields that were defined in the following table:</p>
 <table class="table">
 <colgroup>
@@ -408,7 +421,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>the number of words (including stop-words) of the commit messages.</li>
 </ul></li>
 </ul>
-<p>For this last set of statistical calculations, it is necessary having a minimum amount of commits per author. In order to avoid having data from pet projects and casual users (for example, some contributors only submit a small number of contributions as part of a learning course), an additional criterion is to <strong>ignore those authors having less than 10 commits</strong> for the selected time period.</p>
+<p>For this last set of statistical calculations, it is necessary having a minimum amount of commits per author. In order to avoid having data from pet projects and casual users (for example, some contributors only submit a small number of contributions as part of a learning course), an additional criterion is to <strong>ignore those authors having less than 10 commits</strong> for the selected time period. The script performing this processing is <a href="https://github.com/mafesan/2021-tfm-code/blob/main/revelio/build-classifier-input.py"><code>build-classifier-input.py</code></a>.</p>
 <div class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -757,7 +770,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="correlation" class="level3">
 <h3 class="anchored" data-anchor-id="correlation">Correlation</h3>
-<p>This the correlation matrix from the dataset “as it is”.</p>
+<p>This the initial correlation matrix :</p>
 <div class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="4">
 <details>
 <summary>Code</summary>
@@ -790,12 +803,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="statistical-distribution-of-variables" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-distribution-of-variables">Statistical distribution of variables</h3>
 <p>We start with our target feature: the first thing we observe is that we have a huge imbalance between the classes we aim to classify.</p>
+<section id="target-variable-author_bot" class="level4">
+<h4 class="anchored" data-anchor-id="target-variable-author_bot">Target variable: author_bot</h4>
 <div class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="5">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"darkgrid"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>), dpi<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">7</span>), dpi<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb6-4"><a href="#cb6-4"></a>sns.countplot(data<span class="op">=</span>df_git, x<span class="op">=</span><span class="st">"author_bot"</span>)</span>
 <span id="cb6-5"><a href="#cb6-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -803,7 +818,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="exploratory-data-analysis_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>Let’s represent the frequency distribution of all the variables in our “Contributors dataset”.</p>
+</section>
+<section id="rest-of-variables" class="level4">
+<h4 class="anchored" data-anchor-id="rest-of-variables">Rest of variables</h4>
+<p>Let’s represent the frequency distribution of all the variables in our “Contributors dataset”:</p>
+<section id="group-1" class="level5">
+<h5 class="anchored" data-anchor-id="group-1">Group 1</h5>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>git__num_weekend_commits</td>
+<td>git__num_merge_commits</td>
+</tr>
+<tr class="even">
+<td>git__num_signed_commits</td>
+<td>git__num_commits</td>
+</tr>
+</tbody>
+</table>
 <div class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="6">
 <details>
 <summary>Code</summary>
@@ -821,6 +853,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="exploratory-data-analysis_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<hr>
+</section>
+<section id="group-2" class="level5">
+<h5 class="anchored" data-anchor-id="group-2">Group 2</h5>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>git__ratio_weekend_commits</td>
+<td>git__ratio_merge_commits</td>
+</tr>
+<tr class="even">
+<td>git__ratio_signed_commits</td>
+<td>git__num_repos</td>
+</tr>
+</tbody>
+</table>
 <div class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="7">
 <details>
 <summary>Code</summary>
@@ -838,6 +886,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="exploratory-data-analysis_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<hr>
+</section>
+<section id="group-3" class="level5">
+<h5 class="anchored" data-anchor-id="group-3">Group 3</h5>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>git__median_files</td>
+<td>git__iqr_files</td>
+</tr>
+<tr class="even">
+<td>git__median_lines_added</td>
+<td>git__iqr_lines_added</td>
+</tr>
+</tbody>
+</table>
 <div class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="8">
 <details>
 <summary>Code</summary>
@@ -856,6 +920,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="exploratory-data-analysis_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<hr>
+</section>
+<section id="group-4" class="level5">
+<h5 class="anchored" data-anchor-id="group-4">Group 4</h5>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>git__median_lines_removed</td>
+<td>git__iqr_lines_removed</td>
+</tr>
+<tr class="even">
+<td>git__median_len_commit_message</td>
+<td>git__iqr_len_commit_message</td>
+</tr>
+</tbody>
+</table>
 <div class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="9">
 <details>
 <summary>Code</summary>
@@ -873,6 +953,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="exploratory-data-analysis_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<hr>
+</section>
+<section id="group-5" class="level5">
+<h5 class="anchored" data-anchor-id="group-5">Group 5</h5>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>git__median_len_words_commit_message</td>
+<td>git__iqr_len_words_commit_message</td>
+</tr>
+</tbody>
+</table>
 <div class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="10">
 <details>
 <summary>Code</summary>
@@ -888,6 +984,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="exploratory-data-analysis_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+</section>
+</section>
 </section>
 </section>
 <section id="generate-training-test-and-validation-sets" class="level1">
@@ -1476,11 +1574,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>auto</code>, <code>bot</code>, <code>build</code>, <code>cd</code>, <code>ci</code>, <code>code</code>, <code>commit</code>, <code>copy</code>, <code>dependency</code></td>
+<td><code>auto</code>, <code>bot</code>, <code>build</code>, <code>cd</code>, <code>ci</code>, <code>code</code>, <code>commit</code>, <code>copy</code>, <code>dependency</code>,</td>
+</tr>
+<tr class="even">
+<td><code>fix</code>, <code>integration</code>, <code>issue</code>, <code>merge</code>, <code>patrol</code>, <code>pr</code>, <code>pull</code>,</td>
+</tr>
+<tr class="odd">
+<td><code>release</code>, <code>request</code>, <code>review</code>, <code>sync</code>, <code>template</code>, <code>tool</code>, <code>travis</code></td>
 </tr>
 </tbody>
 </table>
-<p><code>fix</code>, <code>integration</code>, <code>issue</code>, <code>merge</code>, <code>patrol</code>, <code>pr</code>, <code>pull</code>, <code>release</code>, <code>request</code>, <code>review</code>, <code>sync</code>, <code>template</code>, <code>tool</code>, <code>travis</code>|</p>
 <p>Nonetheless, this approach was adding too much complexity to the system. After several experiments, the decision was to summarize the inclusion of these terms into a “terms score”. The idea was to classify the heuristic terms in three different levels assigning weights to each of them, according to their relevance in the application domain. Doing so, an author name having one or more terms from the list would have a greater value, also taking into account their relevance by using these levels. Having a score of <code>0</code> means the <code>author_name</code> field doesn’t include any of the relevant terms.</p>
 <ul>
 <li>The definition of these three levels is:</li>
@@ -1512,7 +1615,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <ul>
-<li>The formula to compute this terms score is: <span class="math inline">\({Ts}(term) = 60Nl_{1} + 30Nl_{2} + 10Nl_{3}\)</span></li>
+<li>The formula to compute this terms score is: <span class="math inline">\({Ts}(term) = 60Nl_{1} + 30Nl_{2} + 10Nl_{3}\)</span>.</li>
 </ul>
 <div class="cell" data-execution_count="50">
 <details>
@@ -1626,8 +1729,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="correlation-after-transforming-the-variabels" class="level2">
-<h2 class="anchored" data-anchor-id="correlation-after-transforming-the-variabels">Correlation after transforming the variabels</h2>
+<section id="correlation-after-transforming-the-variables" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-after-transforming-the-variables">Correlation after transforming the variables</h2>
 <div class="cell" data-execution_count="54">
 <details>
 <summary>Code</summary>
@@ -1653,7 +1756,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Here we represent the variables having absolute correlation values greater than 0.75:</p>
-<div class="cell" data-execution_count="56">
+<div class="cell" data-execution_count="55">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>dfcorr <span class="op">=</span> X_train_git[vars_subset].corr().<span class="bu">abs</span>()</span>
@@ -1668,7 +1771,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="exploratory-data-analysis_files/figure-html/cell-56-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="57">
+<div class="cell" data-execution_count="56">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a><span class="co"># Dropping variables with higher correlation</span></span>
@@ -1691,7 +1794,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <p>After removing the variables with higher correlation, this is how the ultimate correlation matrix looks like:</p>
-<div class="cell" data-execution_count="58">
+<div class="cell" data-execution_count="57">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">10</span>))</span>
@@ -1718,7 +1821,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>We can run an additional check to confirm that there are no pairs of variables having correlation values above 0.75:</p>
-<div class="cell" data-scrolled="true" data-execution_count="68">
+<div class="cell" data-scrolled="true" data-execution_count="58">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a>dfcorr2 <span class="op">=</span> X_train_git.corr().<span class="bu">abs</span>()</span>
@@ -1753,7 +1856,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One of the main challenges of this classification is the imbalance in the target class we are aiming to detect. This context was taken into account when splitting the main dataset into the training, test, and validation tests, but it needs another processing stage before they feed the different classification models. Looking at the techniques that are commonly used to reduce the effect of imbalanced data, the one selected was <strong>SMOTE</strong>.</p>
 <p>SMOTE consists of an algorithm generating new samples considering the k-nearest neighbors from each original sample from the <strong>training set</strong>. Each newly generated sample is interpolated between the original sample and one of the nearest neighbors; with a random component <span class="math inline">\(\lambda\)</span>, which takes value in the range <span class="math inline">\([0, 1]\)</span>.</p>
 <p>To apply SMOTE, we rely on the implementation under the <code>over_sampling</code> module from the Python library <code>imblearn</code>.</p>
-<div class="cell" data-execution_count="69">
+<div class="cell" data-execution_count="59">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a><span class="im">from</span> imblearn.over_sampling <span class="im">import</span> SMOTE</span>
@@ -1772,7 +1875,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="exploratory-data-analysis_files/figure-html/cell-60-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="70">
+<div class="cell" data-execution_count="60">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a><span class="op">%%</span>javascript</span>
