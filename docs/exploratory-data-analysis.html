@@ -224,18 +224,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Wikimedia Foundation has the <a href="https://wikimedia.biterg.io/">Wikimedia Tech community metrics dashboard</a>, which is a running GrimoireLab instance maintained by Bitergia dedicated to get activity metrics from the Wikimedia Tech community. In their <a href="https://www.mediawiki.org/wiki/Community_metrics">public documentation</a> it is linked to the list of repositories they are tracking for their community metrics dashboard.</p>
-<p>I decided to set up a local GrimoireLab instance with a <a href="https://github.com/mafesan/2021-tfm-code/blob/main/default-grimoirelab-settings/projects.json">subset of the projects</a>. As the main goal of this project is to detect automated accounts out of human accounts, I decided to apply a first filter to exclude most of Wikimedia’s research projects. Research projects usually don’t have the desired scale nor the level of activity required for the classification stage. Also, the results could not be as much generalized to other projects and communities.</p>
-<p>As for the selected data sources to analyze, this project is focused on the data from Git. Some of the selected repositories were stored on GitHub, others were stored in a Wikimedia-managed Gerrit instance.</p>
+<p>I decided to set up a local GrimoireLab instance with a <a href="https://github.com/mafesan/2021-tfm-code/blob/main/default-grimoirelab-settings/projects.json">subset of the projects</a>. As the main goal of this project is to detect automated accounts out of human accounts, I decided to apply a first filter to exclude most of Wikimedia’s research projects. Research projects usually don’t have the desired scale nor the level of activity required for the classification stage.</p>
+<p>As for the selected data sources to analyse, this project is focused on the data from Git. Some of the selected repositories were stored on GitHub, others were stored in a Wikimedia-managed Gerrit instance.</p>
 </section>
 <section id="data-overview" class="level2">
 <h2 class="anchored" data-anchor-id="data-overview">Data overview</h2>
-<p>GrimoireLab downloads each Git repository and parses the Git log, storing all the history of commits. From this record per repository, GrimoireLab composes a JSON document per commit, with a set of fields that reflects the information associated with it, such as the unique identifier <em>hash</em>, the number of modified lines, the number of modified files, the commit message, and more. Then, there is another internal process where this data gets complemented with extra fields, such as the identity information matched with the one from the identity management system and some pre-processed fields that allow aggregating the data in a simpler way in Kibana, the visualization layer form the Elastic stack.</p>
+<p>GrimoireLab downloads each Git repository and parses the Git log, storing all the history of commits. From this record per repository, GrimoireLab composes a JSON document per commit, with a set of fields that reflects the information associated with it, such as the unique identifier <em>hash</em>, the number of modified lines, the number of modified files, the commit message, and more. Then, there is another internal process where this data gets complemented with extra fields, such as the identity information matched with the one from the identity management system and some pre-processed fields that allow aggregating the data in a simpler way in Kibana, the visualisation layer form the Elastic stack.</p>
 <p>Summarizing, the <code>git</code> index stores one document per commit, with a set of fields whose meaning is described in the corresponding <a href="https://github.com/chaoss/grimoirelab-elk/blob/master/schema/git.csv">data schema</a>.</p>
 <p>The extracted data considers Git commits submitted from January 1st, 2008 to September 15th, 2021. From the configured repositories, we have logs from 2,876 out of 2,988 repositories.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="imgs/dashboard.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Dashboard showing the data obtained with GrimoireLab</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Dashboard showing the data obtained with GrimoireLab after manually tagging bot accounts</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -244,18 +244,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The next step is to curate the identities’ information. The GrimoireLab tool managing this process, SortingHat, offers mechanisms to automatically improve some key data.</p>
 <p>Regarding account-merging, SortingHat offers many possibilities to merge profiles based on different fields from individuals (email, name and username) both individually or jointly. As we are not assuming any information, the safest approach was to merge profiles by their email. That is, if there are two or more individuals using the same email account, they are merged into the same profile.</p>
 <p>Then, it comes the affiliation information. SortingHat offers a way to automatically enroll individuals in an organization based on the email domain from the profile. This is done by using an organization-domain map (e.g.: Domain is linked to the organization “Wikimedia Foundation”.</p>
-<p>Having said this, SortingHat does not have any automated way to detect which individuals are automatics accounts Bots, and this is where the proposed tool, Revelio, comes to play.</p>
-<p>In order to identify which individuals were bots, I followed two approaches: * The first step consisted of taking all the accounts which were already identified as “Bots” by the Wikimedia tech community itself in a dedicated <a href="https://wikimedia.biterg.io/app/kibana#/dashboard/Affiliations">Affiliations dashboard</a>, filtering in Bot individuals (<code>author_bot:true</code>) from their ElasticSearch <code>git</code> index. * Second, I manually reviewed the rest of the individuals to identify potential bots and then confirm they were looking at their activity. A total of 41 bot individuals were identified, out of 16,284. With this information, I composed a <a href="https://github.com/mafesan/2021-tfm-code/blob/main/default-grimoirelab-settings/identities.yml">SortingHat-supported file</a> with the information of each Bot individual, for replication purposes.</p>
+<p>Having said this, SortingHat does not have any automated way to detect which individuals are automatics accounts (bots), and this is where the proposed tool, Revelio, comes to play.</p>
+<p>In order to identify which individuals were bots, I followed two approaches:</p>
+<ul>
+<li><p>The first step consisted of taking all the accounts which were already identified as “bots” by the Wikimedia tech community itself in a dedicated <a href="https://wikimedia.biterg.io/app/kibana#/dashboard/Affiliations">Affiliations dashboard</a>, filtering in bot individuals (<code>author_bot:true</code>) from their ElasticSearch <code>git</code> index.</p></li>
+<li><p>Second, I manually reviewed the rest of the individuals to identify potential bots and then confirm they were looking at their activity. A total of 41 bot individuals were identified, out of 16,284. With this information, I composed a <a href="https://github.com/mafesan/2021-tfm-code/blob/main/default-grimoirelab-settings/identities.yml">SortingHat-supported file</a> with the information of each bot individual, for replication purposes.</p></li>
+</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="imgs/bot-profile.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Example of a profile marked as Bot in HatStall, the current interface for SortingHat</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Example of a profile marked as bot in HatStall, the current interface for SortingHat</figcaption><p></p>
 </figure>
 </div>
 </section>
 <section id="initial-exploration" class="level2">
 <h2 class="anchored" data-anchor-id="initial-exploration">Initial exploration</h2>
-<p>GrimoireLab downloads each Git repository and parses the Git log, storing all the history of commits. From this record per repository, GrimoireLab composes a JSON document per commit, with a set of fields that reflects the information associated with it, such as the unique identifier (<code>hash</code>), the number of modified lines, the number of modified files, the commit message, and more. Then, there is another internal process where this data gets complemented with extra fields, such as the identity information matched with the one from the identity management system and some pre-processed fields that allow aggregating the data in a simpler way in Kibana, the visualization layer form the Elastic stack.</p>
+<p>GrimoireLab downloads each Git repository and parses the Git log, storing all the history of commits. From this record per repository, GrimoireLab composes a JSON document per commit, with a set of fields that reflects the information associated with it, such as the unique identifier (<code>hash</code>), the number of modified lines, the number of modified files, the commit message, and more. Then, there is another internal process where this data gets complemented with extra fields, such as the identity information matched with the one from the identity management system and some pre-processed fields that allow aggregating the data in a simpler way in Kibana, the visualisation layer form the Elastic stack.</p>
 <p>Summarizing, the <strong>git</strong> index stores one document per commit, with a set of fields whose meaning is described in the corresponding <a href="https://github.com/chaoss/grimoirelab-elk/blob/master/schema/git.csv">data schema</a>.</p>
 <p>For the selected period of time, these were the overall numbers in terms of commits:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -271,14 +275,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p></p><figcaption class="figure-caption">Number of active contributors</figcaption><p></p>
 </figure>
 </div>
-<p>Here are the number of active contributors over time (monthly), splited by those tagged as “Bots” and the those who were not (note that the graph is shown in logaritmic scale):</p>
+<p>Here are the number of active contributors over time (monthly), splited by those tagged as bots and the those who were not (note that the graph is shown in logaritmic scale):</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="imgs/authors-over-time.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Number of active contributors over time</figcaption><p></p>
 </figure>
 </div>
-<p>These are the number of commits submitted over time (monthy), splited by those submitted by individuals tagged as “Bots” and those who were not:</p>
+<p>These are the number of commits submitted over time (monthy), splited by those submitted by individuals tagged as “bots” and those who were not:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="imgs/commits-over-time.png" class="img-fluid figure-img"></p>
@@ -297,19 +301,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="objectives-goals-and-questions">Objectives: Goals and questions</h2>
 <section id="goal-1" class="level3">
 <h3 class="anchored" data-anchor-id="goal-1">Goal 1</h3>
-<p>Have an automatic process to discriminate between human users and Bot accounts, integrated with the GrimoireLab toolset.</p>
+<p>Have an automatic process to discriminate between human users and bot accounts, integrated with the GrimoireLab toolset.</p>
 <section id="questions" class="level4">
 <h4 class="anchored" data-anchor-id="questions">Questions</h4>
 <ul>
 <li><strong>Q1.1.</strong> How to separate bot accounts from human users?</li>
-<li><strong>Q1.2.</strong> Is the profile information from a given individual enough to classify it as human or Bot?</li>
+<li><strong>Q1.2.</strong> Is the profile information from a given individual enough to classify it as human or bot?</li>
 <li><strong>Q1.3.</strong> Are there differences between the activity generated by humans and bots?</li>
 </ul>
 </section>
 </section>
 <section id="goal-2" class="level3">
 <h3 class="anchored" data-anchor-id="goal-2">Goal 2</h3>
-<p>Find which channels and footprints can be used to classify a user as human or Bot.</p>
+<p>Find which channels and footprints can be used to classify a user as human or bot.</p>
 <section id="questions-1" class="level4">
 <h4 class="anchored" data-anchor-id="questions-1">Questions</h4>
 <ul>
@@ -705,7 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>author_bot</code></td>
-<td style="text-align: left;">Boolean value, True if the individual corresponds to a “Bot”; False otherwise</td>
+<td style="text-align: left;">Boolean value, True if the individual corresponds to a “bot”; False otherwise</td>
 <td style="text-align: left;">Categorical, binary</td>
 </tr>
 <tr class="odd">
@@ -1744,7 +1748,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>X_train_git[<span class="st">"log_terms_score"</span>] <span class="op">=</span> X_train_git[<span class="st">"terms_score"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: shifted_log10(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Let’s represent the frequncy distribution of the new “Terms score” variable and test how it looks like when it is transfomed. As we are interested in having a variable representing a wide range of values, we decided not to normalize the value nor transform it.</p>
+<p>Let’s represent the frequncy distribution of the new “Terms score” variable and test how it looks like when it is transfomed. As we are interested in having a variable representing a wide range of values, we decided not to normalise the value nor transform it.</p>
 <div class="cell" data-execution_count="53">
 <details>
 <summary>Code</summary>
