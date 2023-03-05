@@ -37,11 +37,11 @@
               <a class="nav-link" href="about.html">About</a>
             </li>
           </ul>
-          <ul class="navbar-nav ms-md-auto">
+          <!-- <ul class="navbar-nav ms-md-auto">
             <li class="nav-item">
               <a target="_blank" rel="noopener" class="nav-link" href="https://github.com/mafesan/Memoria-TFM/"><i class="bi bi-github"></i> GitHub</a>
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </div>
@@ -57,33 +57,33 @@
       </div>
 
       <div id="section1">
-    	   <div id="links" align="center" style="width: 80%; margin-left: 16%">
+    	   <div id="links" align="center" style="width: 80%; margin-left: 10%;">
            <div class="row text-center mx-auto">
-   					<div class="col-md-2">
+   					<div class="col-md-4">
    						<a href="pdf/memoria.pdf" style="font-size:5em;" target="_blank"><i class="bi bi-file-text"></i></a>
    						<h5 class="mg-md text-center">
    							<strong>MSc Thesis</strong>
    						</h5>
    					</div>
-   					<div class="col-md-2">
+   					<div class="col-md-4">
    						<a href="notebooks.html" style="font-size:5em;"><i class="bi bi-journal-code"></i></a>
    						<h5 class="mg-md text-center">
    							<strong>Notebooks</strong>
    						</h5>
    					</div>
-   					<div class="col-md-2">
+   					<!-- <div class="col-md-2">
    						<a href="#" style="font-size:5em;" target="_blank"><i class="bi bi-file-earmark-slides"></i></a>
    						<h5 class="mg-md text-center">
    							<strong>Slides</strong>
    						</h5>
-   					</div>
+   					</div> -->
    					<!-- <div class="col-md-2">
    						<a href="#demo" style="font-size:5em;" target="_blank"><i class="fab fa-youtube"></i></a>
    						<h5 class="mg-md text-center ">
    							<strong>Demo</strong>
    						</h5>
    					</div> -->
-             <div class="col-md-2">
+             <div class="col-md-4">
    						<a href="https://github.com/mafesan/2021-tfm-code#revelio-bot-classifier-integrable-with-grimoirelab" style="font-size:5em;" target="_blank"><i class="bi bi-github"></i></a>
    						<h5 class="mg-md text-center ">
    							<strong>Code Repository</strong>
@@ -106,19 +106,88 @@
          <h1>Summary</h1><br>
          <div class="fs-5 text text-left">
            <p class="lead">
-            <strong>Revelio</strong> is the name of tool developed for <a href="about.html">my MSc final project</a> of the <b>Master's degree in Data Science</b> (URJC).<br>
+            <b>Revelio</b> is the name of tool developed for <a href="about.html">my MSc final project</a> of the <b>Master's degree in Data Science</b> (URJC).
+            The aim of this tool is to <b>detect automatic accounts (bots)</b> automatically in software projects,
+            based on their profiles' information and their activity in that software project, integrable as a component inside the <a href="https://chaoss.github.io/grimoirelab">GrimoireLab toolchain</a>.
             <br>
-            The aim of this tool is to <strong>detect Bots</strong> automatically based on their profiles' information
-            and their activity in a software project, integrable as a component inside the <a href="https://chaoss.github.io/grimoirelab">GrimoireLab toolchain</a>.<br>
             <br>
-            To develop the first version of this tool, we analyzed the code changes from a set of software projects
-            from the <a href="https://wikimediafoundation.org/">Wikimedia Foundation</a>, produced <b>between January 2008</b> and <b>September 2021</b> using GrimoireLab,
-            labeling manually the Bot accounts generating activity with the purpose of creating an input dataset to train a binary classifier to detect whether a given profile is a Bot or not.
+            People participating in software projects (in particular, in Free, Open-Source projects) rely
+            on many tools and platforms to support their activity on many facets, such as code review
+            or bug management. Within this scenario, automatic accounts (also known as bot accounts)
+            are commonly used in software development to automate and ease repetitive or particular
+            tasks.
+            <br>
+            <br>
+            Identifying these bot accounts and their activity in the projects is crucial for anyone will-
+            ing to measure many aspects of the software project and the community of contributors
+            behind it. <a href="https://chaoss.github.io/grimoirelab">GrimoireLab</a> is a tool that provides metrics about the software development pro-
+            cess, including a component to manage the contributors’ identities, with an option to mark
+            individual profiles as bots. Nonetheless, this labelling process is entirely manual.
+            In this MSc thesis, a Python tool named named "Revelio" is developed, with the purpose of detecting bots automatically based on their profiles’ information
+            and their activity in the project is developed. This tool can be integrated as a
+            component inside the GrimoireLab toolchain. To this aim, we analysed the code changes
+            from a set of software projects from the <a href="https://wikimediafoundation.org/">Wikimedia Foundation</a>,
+            produced between January 2008 and September 2021 using GrimoireLab, labelling manually the bot accounts
+            generating activity with the purpose of creating an input dataset to train a binary classifier
+            to detect whether a given profile is a bot or not.
+            <br>
+            <br>
+            After testing different classification models using the Scikit-learn module for Python, the
+            model that performed best was a “Random Forest” classifier, where the most relevant fea-
+            tures were a terms score calculated based on domain-related heuristics and statistical val-
+            ues obtained from the individuals’ activity, such as number of changes in source code or
+            number of words and files per code change submitted to the projects.
            </p>
           </div>
-         <div class="card" style="background-color:transparent;width:100%">
+
+          <!-- <h1>Resumen</h1><br>
+          <div class="fs-5 text text-left">
+            <p class="lead">
+             <b>Revelio</b> es el nombre de la herramienta desarrollada para <a href="about.html">mi Trabajo de Fin de Máster</a> del <b>Máster en Data Science</b> (URJC).
+             El objetivo de esta herramienta es <b>detectar cuentas automáticas (bots)</b> automáticamente en proyectos de software
+             en base a la información de sus perfiles y en base a su actividad dentro del projecto. Esta herramienta tiene el objetivo de ser integrable
+             como un componente adicional al conjunto de herramientas de <a href="https://chaoss.github.io/grimoirelab">GrimoireLab</a>.
+             <br>
+             <br>
+              Las personas que participan en proyectos de software (y en paricular en proyectos de software
+              libre y código abierto), se apoyan en varias herramientas y plataformas para interactuar
+               y tratar con diferentes aspectos de estos proyectos, tales como la revisión de código o
+              la gestión de errores o bugs. En este contexto, las cuentas automáticas (también conocidas
+              como cuentas bot) se usan frecuentemente en el desarrollo de software para automatizar y
+              simplificar ciertas tareas repetitivas o específicas.
+              <br>
+              <br>
+              Para cualquier persona interesada en medir ciertos aspectos de un proyecto de software
+              y de la comunidad de personas que lo sustenta, es crucial identificar estas cuentas bot y
+              su actividad. <a href="https://chaoss.github.io/grimoirelab">GrimoireLab</a> es una herramienta que proporciona métricas sobre el proceso
+              de desarrollo de software, que incluye un componente para la gestión de los perfiles de
+              contribuidores. Dicho componente cuenta con una opción para marcar aquellos perfiles
+              que pertenezcan a una cuenta bot. Sin embargo, este proceso de etiquetado es enteramente
+              manual.
+              <br>
+              <br>
+              En este Trabajo de Fin de Máster se propone una herramienta desarrollada en Python llamada "Revelio"
+              para detectar automáticamente cuentas bot, integrable como un componente dentro de GrimoireLab,
+              utilizando como base la información de los perfiles de los diferentes individuos y de
+              su actividad en el proyecto analizado. Para desarrollar esta herramienta se han analizado
+              con GrimoireLab los cambios en el código de un conjunto de proyectos de software de la
+              <a href="https://wikimediafoundation.org/es">Fundación Wikimedia</a>, producidos entre enero de 2008 y septiembre de 2021, etiquetando
+              manualmente aquellas cuentas bot activas en ese periodo; con el propósito de crear un conjunto
+              de datos (dataset) de entrada para entrenar un clasificador binario, que detecte si un
+              determinado perfil pertenece a una cuenta bot o no.
+              <br>
+              <br>
+              Tras probar diferentes modelos de clasificación usando el módulo Scikit-learn para Python,
+              el modelo que mejor resultados obtuvo fue un clasificador de tipo Random Forest. Entre sus
+              caraterísticas más relevantes destaca el empleo de una puntuación numérica calculada en
+              base a heurísticos de este dominio de aplicación junto con valores estadísticos obtenidos de
+              la actividad de los individuos, tales como el número de cambios o el numero de palabras
+              y ficheros de cada cambio producido en los proyectos analizados.
+            </p>
+           </div> -->
+         <div class="card mx-auto" style="background-color:transparent;width:70%;">
              <div class="card-body">
-               <h5 class="card-title">General architecture</h5>
+               <h5 class="card-title text-center">General architecture</h5>
                <!-- <p class="card-text">Some example text some example text</p> -->
              </div>
              <img class="card-img-bottom" src="imgs/general-architecture-revelio.png" alt="general architecture" style="width:100%">
@@ -134,7 +203,7 @@
     </main>
 
     <footer class="container" style="padding-top:20px">
-      <p>&copy;<a href="https://github.com/mafesan" target="_blank">mafesan</a> 2023. This page is based on Flatly theme from <a href="https://bootswatch.com/" target="_blank">Bootswatch</a>. Special thanks to <a href="https://github.com/zhquan/" target="_blank">zhquan</a>.</p>
+      <p>&copy;<a href="https://github.com/mafesan" target="_blank">mafesan</a> 2023. The source code of this page is available <a href="https://github.com/mafesan/Memoria-TFM/" target="_blank">here</a>. Based on Flatly theme from <a href="https://bootswatch.com/" target="_blank">Bootswatch</a>. Special thanks to <a href="https://github.com/zhquan/" target="_blank">zhquan</a>.</p>
     </footer>
 
     <script src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
