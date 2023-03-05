@@ -106,37 +106,24 @@
          <h1>Summary</h1><br>
          <div class="fs-5 text text-left">
            <p class="lead">
-            <b>Revelio</b> is the name of tool developed for <a href="about.html">my MSc final project</a> of the <b>Master's degree in Data Science</b> (URJC).
-            The aim of this tool is to <b>detect automatic accounts (bots)</b> automatically in software projects,
-            based on their profiles' information and their activity in that software project, integrable as a component inside the <a href="https://chaoss.github.io/grimoirelab">GrimoireLab toolchain</a>.
-            <br>
-            <br>
-            People participating in software projects (in particular, in Free, Open-Source projects) rely
-            on many tools and platforms to support their activity on many facets, such as code review
-            or bug management. Within this scenario, automatic accounts (also known as bot accounts)
-            are commonly used in software development to automate and ease repetitive or particular
-            tasks.
-            <br>
-            <br>
-            Identifying these bot accounts and their activity in the projects is crucial for anyone will-
-            ing to measure many aspects of the software project and the community of contributors
-            behind it. <a href="https://chaoss.github.io/grimoirelab">GrimoireLab</a> is a tool that provides metrics about the software development pro-
-            cess, including a component to manage the contributors’ identities, with an option to mark
-            individual profiles as bots. Nonetheless, this labelling process is entirely manual.
-            In this MSc thesis, a Python tool named named "Revelio" is developed, with the purpose of detecting bots automatically based on their profiles’ information
-            and their activity in the project is developed. This tool can be integrated as a
-            component inside the GrimoireLab toolchain. To this aim, we analysed the code changes
-            from a set of software projects from the <a href="https://wikimediafoundation.org/">Wikimedia Foundation</a>,
-            produced between January 2008 and September 2021 using GrimoireLab, labelling manually the bot accounts
-            generating activity with the purpose of creating an input dataset to train a binary classifier
-            to detect whether a given profile is a bot or not.
-            <br>
-            <br>
-            After testing different classification models using the Scikit-learn module for Python, the
-            model that performed best was a “Random Forest” classifier, where the most relevant fea-
-            tures were a terms score calculated based on domain-related heuristics and statistical val-
-            ues obtained from the individuals’ activity, such as number of changes in source code or
-            number of words and files per code change submitted to the projects.
+             <b>Revelio</b> is the name of tool developed for <a href="about.html">my MSc final project</a> of the <b>Master's degree in Data Science</b> (Rey Juan Carlos University).
+              <br>
+              <br>
+              The aim of this tool is to <b>detect automatic accounts (bots)</b> automatically in software projects,
+              based on their profiles' information and their activity in that software project, integrable as a component inside the <a href="https://chaoss.github.io/grimoirelab">GrimoireLab toolchain</a>.
+              <br>
+              <br>
+              With this goal in mind, we analysed the code changes from a set of software projects from the <a href="https://wikimediafoundation.org/">Wikimedia Foundation</a>,
+              produced between January 2008 and September 2021 using GrimoireLab, labelling manually the bot accounts
+              generating activity with the purpose of creating an input dataset to train a binary classifier
+              to detect whether a given profile is a bot or not.
+              <br>
+              <br>
+              After testing different classification models using the Scikit-learn module for Python, the
+              model that performed best was a “Random Forest” classifier, where the most relevant fea-
+              tures were a terms score calculated based on domain-related heuristics and statistical val-
+              ues obtained from the individuals’ activity, such as number of changes in source code or
+              number of words and files per code change submitted to the projects.
            </p>
           </div>
 
