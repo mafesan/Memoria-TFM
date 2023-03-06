@@ -440,7 +440,7 @@ After testing different classification models using the \emph{Scikit-learn} modu
 
 Las personas que participan en proyectos de \emph{software} (y en paricular en proyectos de \emph{software} libre y código abierto), se apoyan en varias herramientas y plataformas para interactuar y tratar con diferentes aspectos de estos proyectos, tales como la revisión de código o la gestión de errores o \emph{bugs}. En este contexto, las cuentas automáticas (también conocidas como cuentas \emph{bot}) se usan frecuentemente en el desarrollo de software para automatizar y simplificar ciertas tareas repetitivas o específicas.
 
-Para cualquier persona interesada en medir ciertos aspectos de un proyecto de software y de la comunidad de personas que lo sustenta, es crucial identificar estas cuentas \emph{bot} y su actividad. \emph{GrimoreLab} es una herramienta que proporciona métricas sobre el proceso de desarrollo de \emph{software}, que incluye un componente para la gestión de los perfiles de contribuidores. Dicho componente cuenta con una opción para marcar aquellos perfiles que pertenezcan a una cuenta \emph{bot}. Sin embargo, este proceso de etiquetado es enteramente manual.
+Para cualquier persona interesada en medir ciertos aspectos de un proyecto de software y de la comunidad de personas que lo sustenta, es crucial identificar estas cuentas \emph{bot} y su actividad. \emph{GrimoireLab} es una herramienta que proporciona métricas sobre el proceso de desarrollo de \emph{software}, que incluye un componente para la gestión de los perfiles de contribuidores. Dicho componente cuenta con una opción para marcar aquellos perfiles que pertenezcan a una cuenta \emph{bot}. Sin embargo, este proceso de etiquetado es enteramente manual.
 
 En este Trabajo de Fin de Máster se propone una herramienta desarrollada en \emph{Python} para detectar automáticamente cuentas bot, integrable como un componente dentro de \emph{GrimoireLab}, utilizando como base la información de los perfiles de los diferentes individuos y de su actividad en el proyecto analizado. Para desarrollar esta herramienta se han analizado con \emph{GrimoireLab} los cambios en el código de un conjunto de proyectos de \emph{software} de la Fundación Wikimedia, producidos entre enero de 2008 y septiembre de 2021, etiquetando manualmente aquellas cuentas \emph{bot} activas en ese periodo; con el propósito de crear un conjunto de datos (\emph{dataset}) de entrada para entrenar un clasificador binario, que detecte si un determinado perfil pertenece a una cuenta \emph{bot} o no.
 
@@ -552,14 +552,14 @@ To answer these questions, we must manage contributor identities within the proj
 
 After spotting the usage of a plethora of different tools within FLOSS projects, it is important to explain that, for interacting with each of these tools, each project contributor must be identified in some way. This could be done by creating an account or setting up a set of credentials, usually a combination of name and email. This means each contributor will end up with one or more different ``accounts'' or ``identities'' for the services the project is using.
 
-In such a scenario, it could happen that some contributors use multiple accounts or credentials sets (from now on, we will refer to these as \textit{identities}) for the same tool or service, for instance, to differentiate the contributions made through an organisational account from those made from a personal or academic account. We name an individual as the entity representing the many identities of a contributor, its profile, and enrollment information. This problem alone entails one of the hardest challenges: how to merge identities owned by the same individual.
+In such a scenario, it could happen that some contributors use multiple accounts or credentials sets (from now on, we will refer to these as \textit{identities}) for the same tool or service, for instance, to differentiate the contributions made through an organisational account from those made from a personal or academic account. We name an individual as the entity representing the many identities of a contributor, its profile, and enrolment information. This problem alone entails one of the hardest challenges: how to merge identities owned by the same individual.
 
 This is where SortingHat, a component that is part of the GrimoireLab toolset (see~\ref{ssec:GrimoireLab}), comes into play. This tool aims to ease the task of managing contributors' identities within a project or set of projects~\cite{moreno_et_al-sortinghat}. It will be described in detail in Section~\ref{sec:SortingHat}. 
 
 \begin{figure}
  \centering
   \includegraphics[width=16cm, keepaspectratio]{img/example-identity}
-  \caption{A project contributor can use many accounts across different tools and platforms, besides having a number of organizational affiliations.}
+  \caption{A project contributor can use many accounts across different tools and platforms, besides having a number of organisational affiliations.}
   \label{fig:example-identity}
 \end{figure}
 
@@ -589,7 +589,7 @@ Up to now, this has been an entirely manual process that consumes substantial ti
 \section{How this project was born}
 \label{sec:intro-project-origin}
 
-In this thesis, an approach to identify individuals from Automatic accounts (bots) is proposed, using machine learning techniques to build a classifier based on contributions produced by all identities from a given set of projects. As an additional goal, this classifier will be incorporated as a new feature in SortingHat, integrated with the original recommendation engine already implemented in this tool.
+In this thesis, an approach to identify individuals from Automatic accounts (bots) is proposed, using machine learning techniques to build a classifier based on contributions produced by all identities from a given set of projects. As an additional goal, this classifier will be incorporated as a new feature in SortingHat, integrated with the original recommendation engine already implemented in it.
 
 It is worth mentioning that this project was born within a strong research context. I had already started with this project when Prof. Tom Mens, Head of the Software Engineering Lab from the Faculty of Sciences at University of Mons (Belgium), contacted our Bitergia team to let us know about a research article regarding bot classification that they were developing at that time (September 2020). As soon I became aware of this project, I reached Prof. Tom Mens and his team to have a meeting to discuss the scope of their research and the possibility of starting a collaboration between Bitergia (the company I work for, at the time of writing this thesis) and the Software Engineering Lab from University of Mons. 
 
@@ -669,7 +669,7 @@ Considering natural time, I spent, roughly, $1$ year and $7$ months working most
 during weekends, as I conciliated it with my full-time job. Whilst the main conversations for starting this project began in September 2020, the first stage started on March 2021. The time I spent during the first stages of the project were quite uneven, but from April 2021 I was able to keep a more regular pace until its completion on January 2023. This is the estimation of when each task was carried out and how much time was spent on it:
 
 \begin{itemize}
-\item First design of the tool, data obtention and curation: March 2021-September 2021.
+\item First design of the tool, data retrieval and curation: March 2021-September 2021.
 \item Designing the tool, additional work on data curation: September 2021-October 2021.
 \item Building the input dataset and first experiments: October 2021-January 2022.
 \item Second round of experiments: April 2022-July 2022.
@@ -684,14 +684,14 @@ This thesis is outlined as follows:
 
 \begin{itemize}
     \item In this Chapter~\ref{chap:intro}, ``Introduction'', the general context and motivation is described for the problem we aim to solve. Also, the objectives for the project were already detailed in subsection~\ref{sec:objectives}, ``Project objectives''. 
-    \item Next, (Chapter~\ref{chap:state-art}), ``State of the Art'',  provides information about previous research work on this field and also a brief explanation of the technologies that were used during the process.
+    \item Next, Chapter~\ref{chap:state-art}, ``State of the Art'',  provides information about previous research work on this field and also a brief explanation of the technologies that were used during the process.
     \item The design process and architecture of the tool are detailed in Chapter~\ref{chap:design-implementation}, ``Design and Implementation'', including a breakdown of its components and a detailed analysis of the dataset obtained for the purpose of this project.
     \item In Chapter~\ref{chap:experiments}, ``Experiments and validation'', the classifiers performance and results are examined through different experiments, including the description of technical challenges encountered and how they were addressed.
     \item Wrapping up, Chapter~\ref{chap:conclusions}, ``Conclusions'' evaluates whether the set objectives were met, and includes a discussion on the limitations of the tool, lessons learned and future work.
     \item Furthermore, the Appendix~\ref{app:app-definitions}, ``Definitions'', provides additional explanations for several key terms.
 \end{itemize}
 
-There is a web site dedicated to this final project\footnote{\url{https://mafesan.github.io/Memoria-TFM}}, including this thesis. Complementary content, along with the code for this tool are available in a dedicated GitHub repository\footnote{\url{https://github.com/mafesan/2021-tfm-code}}.
+There is a website dedicated to this final project\footnote{\url{https://mafesan.github.io/Memoria-TFM}}. It includes this thesis and complementary content such as the Notebooks for the exploratory data analysis and the classification experiments. In addition, the source code for this tool is available in another dedicated GitHub repository\footnote{\url{https://github.com/mafesan/2021-tfm-code}}.
 
 % Por último, en esta sección se introduce a alto nivel la organización del resto del documento
 % y qué contenidos se van a encontrar en cada capítulo.
@@ -719,7 +719,7 @@ There is a web site dedicated to this final project\footnote{\url{https://mafesa
 
 As mentioned in the Introduction chapter, this project was born within a strong research context. When I contacted Prof. Tom Mens and his team about this Master's thesis, we first exchanged ideas regarding the scope of the project and how both initiatives could complement one another. Then, they shared with me the scientific paper they were developing, aimed at detecting bots in issues and PR comments from GitHub.
 
-A discussion followed about which research lines could be addressed for this Master's thesis. The Software Engineering Lab from University of Mons did not implement the tool, nor the underlying classifier, to detect bots based on Git commit comments or any other Git-related information. As it would be relatively easy to extend their tool to also consider Git commit comments, it was likely the classifier features that they used to distinguish bots from humans in GitHub issue comments, and PR comments do not work that well on Git comments. Studying, testing, and extending this behaviour was one of the main ideas they proposed to me for this Master's thesis. Likewise, this study could be extended to look at other systems and data sources. Last, but not least, it was interesting for them to learn how this classification was going to be integrated with identity merging (mainly talking about GrimoireLab's SortingHat component).
+A discussion followed about which research lines could be addressed for this Master's thesis. The Software Engineering Lab from University of Mons did not implement the tool, nor the underlying classifier, to detect bots based on Git commit comments or any other Git-related information. As it would be relatively easy to extend their tool to also consider Git commit comments, it was likely the classifier features that they used to distinguish bots from humans in GitHub issue and pull request comments do not work that well on Git comments. Studying, testing, and extending this behaviour was one of the main ideas they proposed to me for this Master's thesis. Likewise, this study could be extended to look at other systems and data sources. Last, but not least, it was interesting for them to learn how this classification was going to be integrated with identity merging (mainly talking about GrimoireLab's SortingHat component).
 
 After reviewing the paper from the Software Engineering Lab at University of Mons, by Mehdi Golzadeh et al., I discovered that this text pointed to other interesting articles about the same topic, which are relevant to this Master's thesis.
 
@@ -729,7 +729,7 @@ After reviewing the paper from the Software Engineering Lab at University of Mon
 In the following subsections, I summarise the two most relevant research articles on which this project is supported, and the technologies used for this project.
 
 \begin{itemize}
-    \item The first one is the article by Researcher Mehdi Golzadeh, Prof. Tom Mens et al.: \textbf{``A ground-truth dataset and classification model for detecting bots in GitHub issue and PR comments''}~\cite{golzadeh-mens-ground-truth-github2021}, on detecting bots in issue and PR comments from OSS projects.
+    \item The first one is the article by Researcher Mehdi Golzadeh, Prof. Tom Mens et al.: \textbf{``A ground-truth dataset and classification model for detecting bots in GitHub issue and PR comments''}~\cite{golzadeh-mens-ground-truth-github2021}, on detecting bots in issue and pull request comments from OSS projects.
     
     \item The second one by Dey, B. Vacilescu et al.: \textbf{``Detecting and characterising bots that commit code''}~\cite{dey-et-al-detecting-bots}, on detecting bots contributing code in OSS\footnote{Open-Source Software.} projects.
 \end{itemize}
@@ -739,35 +739,34 @@ In the following subsections, I summarise the two most relevant research article
 
 The main goal of this paper is to propose an automated classification model to detect bots through comments submitted in GitHub issues and pull requests.
 
-This article is divided into three large sections: First, they elaborate a ground-truth dataset of pull requests and issue comments from $5K$ GitHub accounts, from which $527$ were identified as bots. Then, they propose a classification model that relies on comment-related features to classify accounts as either bot or human. Eventually, they propose an open-source tool based on the classification model to allow GitHub contributors to detect which accounts in their repositories correspond to bots.
+This article is divided into three large sections: First, they elaborate a ground-truth dataset of pull request and issue comments from $5K$ GitHub accounts, from which $527$ were identified as bots. Then, they propose a classification model that relies on comment-related features to classify accounts as either bot or human. Eventually, they propose an open-source tool based on the classification model to allow GitHub contributors to detect which accounts in their repositories correspond to bots.
 
 \subsubsection{Creating the ground-truth dataset}
 \label{sssec:golzadeh-dataset}
 
-As the objective of this study is to focus on software development repositories, they need a way to identify which repositories from GitHub were created for such purpose. Hence, they relied on \textit{libraries.io}, a monitoring service indexing information for several million packages distributed through several package registries, such as PyPI, npm, etc. 
+As the objective of this study is to focus on software development repositories, they need a way to identify which repositories from GitHub were created for such purpose. Hence, they rely on \textit{libraries.io}, a monitoring service indexing information for several million packages distributed through several package registries, such as PyPI, npm, etc. 
 
-Their initial dump contained more than $3.3$ million GitHub repositories, from which they randomly selected around $136K$ of them. From each of these repositories, they extracted the last $100$ comments of the last $100$ issues and pull requests during $4$ days, in February 2020, using GitHub's API. They obtained over $10M$ comments from more than $837K$ contributors, and from more than $3.5M$ issues and pull requests.
+Their initial dump contains more than $3.3$ million GitHub repositories, from which they randomly select around $136K$ of them. From each of these repositories, they extract the last $100$ comments of the last $100$ issues and pull requests during $4$ days, in February 2020, using GitHub's API. They obtain over $10M$ comments from more than $837K$ contributors, and from more than $3.5M$ issues and pull requests.
 
-As the initial dataset was too big, they applied some constraints. First, they excluded users who made less than $10$ comments. This threshold comes from a previous study. Then, they extracted a subset of $5K$ commenters, selected both randomly and manually, adding $438$ commenters who had been identified as bots in previous studies or contained a specific substring in their GitHub account name, such as ``bot'', ``ci'', ``cla'', ``auto'', ``logic'', ``code'', ``io'' and ``assist''.
+After considering the size of the initial dataset, they apply some constraints to reduce it. First, they exclude users who made less than $10$ comments. This threshold comes from a previous study. Then, they extract a subset of $5K$ commenters, selected both randomly and manually, adding $438$ commenters who had been identified as bots in previous studies or contained a specific substring in their GitHub account name, such as ``bot'', ``ci'', ``cla'', ``auto'', ``logic'', ``code'', ``io'' and ``assist''.
 
-Then, for the labelling process, they developed a web application where each commenter was presented to at least two of the four authors of the paper. Comments belonging to a certain user were displayed in batches of $20$ comments (with the option of showing more, if needed). Then, the rater could select whether the commenter was a bot or a human being. All cases that were agreed upon were included in the ground-truth dataset.
+Then, for the labelling process, they develop a web application where each commenter is presented to at least two of the four authors of the paper. Comments belonging to a certain user are displayed in batches of $20$ comments (with the option of showing more, if needed). Then, the rater can select whether the commenter is a bot or a human being. All cases that were agreed upon are included in the ground-truth dataset.
 
 \subsubsection{Creating the classification model}
 \label{sssec:golzadeh-classification}
 
-These were the selected features to create the classification model:
+These are the selected features to create the classification model:
 
 \begin{enumerate}
     \item Text distance between comments.
     \begin{itemize}
         \item The main hypothesis is that bot commenters post more repetitive comments than humans do. This is why the metrics considered are text distance metrics, that are commonly used in natural language processing (NLP): the Jaccard and Levenshtein distances. The Jaccard distance~\ref{sec:jaccard-definition} aims to quantify the similarity of two texts based on their content, while the Levenshtein distance~\ref{sec:levenshtein-definition} intends to capture the structural difference by counting single-character edits.
-        \item After a tokenization process, for each commenter the mean of the Jaccard and Levenshtein distances between all pairs of comments
-        are computed. Results show that humans got higher median values for both distances than bots. Nonetheless, there is overlapping between the values from both classes, indicating that these mean distances are not enough to properly distinguish between the two classes.
+        \item After a tokenization process, for each commenter, they compute the mean of the Jaccard and Levenshtein distances between all pairs of comments. Results show that humans get higher median values for both distances than bots. Nonetheless, there is overlapping between the values from both classes, indicating that these mean distances are not enough to properly distinguish between the two classes.
         \item Finally, a combination of both Jaccard and Levenshtein distances is used~\ref{sec:jacc-lev-comb-definition}.
     \end{itemize}
     \item Repetitive comment patterns.
         \begin{itemize}
-            \item Observations suggest that bots tend to have sets of similar comments, while most comments from humans are unique, except some of them that seem to follow a pattern (mostly, short answers such as ``Thank you!'', ``\texttt{+1}'' or ``\textit{LGTM}''\footnote{ LGTM: Shorthand for ``Looks good to me''. ``\texttt{+1}'', as a common way to express agreement with something proposed in a previous comment or description.}.
+            \item Observations suggest that bots tend to have sets of similar comments, while most comments from humans are unique, except some of them that seem to follow a pattern (mostly, short answers such as ``Thank you!'', ``\texttt{+1}'' or ``\textit{LGTM}''\footnote{ LGTM: Shorthand for ``Looks good to me''. ``\texttt{+1}'', as a common way to express agreement with something proposed in a previous comment or description.}).
             \item To capture the comment patterns, they select \textit{DBSCAN}, a density-based clustering algorithm. To capture both structural and content distance between comments, a combination of both Levenshtein and Jaccard distances is computed. For each commenter, \textit{DBSCAN} is applied to its set of comments.
             \item When the number of comment patterns (clusters) and the number of comments considered per commenter is represented, there is a clearer separation between humans and bots. The number of comment patterns for bots remained stable and low, regardless of the number of comments.
         \end{itemize}
@@ -783,9 +782,9 @@ These were the selected features to create the classification model:
         \end{itemize}
 \end{enumerate}
 
-For selecting the classifier, they rely on a standard grid-search \textit{10-fold} cross-validation process to compare five families of classifiers (random forest, k-nearest neighbours, decision trees, logistic regression, and support vector machines) over the training set ($60\%$ of the ground-truth dataset) using \textit{scikit-learn}~\ref{sssec:scikit-learn}. In addition, the class ``weight'' parameter was set to address the class imbalance problem for each supported classifier.
+For selecting the classifier, they rely on a standard grid-search \textit{10-fold} cross-validation process to compare five families of classifiers (random forest, k-nearest neighbours, decision trees, logistic regression, and support vector machines) over the training set ($60\%$ of the ground-truth dataset) using \textit{Scikit-learn}~\ref{sssec:scikit-learn}. In addition, the class ``weight'' parameter is set to address the class imbalance problem for each supported classifier.
 
-The $10$ subsets were created using a stratified shuffle split, to preserve the same proportion of bots and humans as in the complete training set.
+The $10$ subsets are created using a stratified shuffle split, to preserve the same proportion of bots and humans as in the complete training set.
 
 The selected classifier is the ``Random forest'': using the \textit{Gini} split criterion, they get $10$ estimators (trees) and a maximum depth of $10$ for these trees. Results are available in Table~\ref{table:golzadeh-table-results}.
 \smallskip
@@ -833,7 +832,7 @@ They also find several examples of commenters whose behaviour and comments corre
 
 Although other articles, such as the one from Dey et al. (explained in the following subsection), proposed approaches for identifying bot accounts based on their commit messages or their author information, such as checking the presence of the string ``bot'' in the account name or the committer name, it lead to numerous both false positives and false negatives.
 
-\subsection{Detecting  and characterising bots that commit code}
+\subsection{Detecting and characterising bots that commit code}
 \label{ssec:dey}
 
 The main goal of this article is to find an automated way of identifying bots (and their contributions) that commit code in open-source projects and characterise them according to their activity.
@@ -847,17 +846,17 @@ To do so, they propose a systematic approach named \textbf{BIMAN} (\emph{Bot Ide
 
 This method is applied to the \emph{World of Code} dataset~\cite{mockus-woc}, obtaining a subset of the data, gathering information about $461$ bots detected by this approach and manually verifying as bots, each with more than $1,000$ commits.
 
-Their method to extract information about the authors consisted of these steps: First, obtaining a list of all authors from the \emph{World of Code} dataset\footnote{The author's IDs were represented by a combination of name and email address.}. 
+Their method to extract information about the authors consists of these steps: First, obtaining a list of all authors from the \emph{World of Code} dataset\footnote{The author's IDs are represented by a combination of name and email address.}. 
 Second, identifying all commits from the authors. And third, extracting the list of files modified by a commit, the list of projects the commit is associated with, and the commit content for each commit for every author.
 
-That being said, \textbf{BIMAN} (the proposed technique for detecting bots) comprises three methods, which are detailed in the following subsections. This dataset is also used to characterise the bots based on their patterns, such as the type of files modified and time distribution, to analyse their work and the programming languages they use.
+That being said, \textbf{BIMAN} (the proposed technique for detecting bots) comprises three methods, which are detailed in the following subsections. This dataset is also used to characterise the bots based on their patterns, such as the type of files modified and time distribution, to analyse their work, and the programming languages they use.
 
 \subsubsection{Identifying bots by name (BIN)}
 \label{sssec:dey-bin}
 
-After inspecting the dataset, regular expressions are used to identify if an author is a bot by checking if the author's name or the email contained the substring \texttt{bot}. These expressions have restrictions, like searching for the string preceded and followed by non-alpha characters (to avoid false positives, such as names like ``Abbot'') and excluding from this search the email domain.
+After inspecting the dataset, regular expressions are used to identify if an author is a bot by checking if the author's name or the email contains the substring \texttt{bot}. These expressions have restrictions, like searching for the string preceded and followed by non-alpha characters (to avoid false positives, such as names like ``Abbot'') and excluding from this search the email domain.
 
-The initial assumption is that bots are very active and produced a significantly greater number of commits than humans. However, the observations show that the number of commits between humans and bots is not quite different. Among the reasons behind this statement, one is that given an author ID consisting of a name-email combination, slight variations in this combination lead to consider some cases as different authors when they are not. Besides, bots might have been implemented as an experiment or as part of a course and never used afterwards. Another reason could be that some bots were designed for a project, but in the end, they were never fully adopted.
+The initial assumption is that bots are very active and produce a significantly greater number of commits than humans. However, the observations show that the number of commits between humans and bots is not quite different. Among the reasons behind this statement, one is that given an author ID consisting of a name-email combination, slight variations in this combination lead to consider some cases as different authors when they are not. Besides, bots might have been implemented as an experiment or as part of a course and never used afterwards. Another reason can be that some bots were designed for a project, but in the end, they were never fully adopted.
 
 \subsubsection{Detecting bots by commit messages (BIM)}
 \label{sssec:dey-bim}
@@ -871,7 +870,7 @@ The \textbf{BIM} approach uses a document template score algorithm, which compar
 
 Twenty metrics are used as a starting point, using the files changed by each commit, the projects that the commit is associated with, and the timestamp and timezone of the commits.
 
-The random forest model performs better than other approaches for predicting whether an author was a bot using the numerical features. Out of the $20$ variables, only six features are retained as predictors (see Table~\ref{table:dey-table-predictors}).
+The random forest model performs better than other approaches for predicting whether an author is a bot using the numerical features. Out of the $20$ variables, only six features are retained as predictors (see Table~\ref{table:dey-table-predictors}).
 
 \begin{table}[htb]
 \renewcommand{\arraystretch}{1.2}
@@ -902,9 +901,9 @@ The random forest model performs better than other approaches for predicting whe
 
 The ensemble model is implemented as another random forest model and combine the outputs of the three methods explained so far (\textbf{BIN}, \textbf{BIM} and \textbf{BICA}) as predictors to make a final decision on whether an author is a bot or not.
 
-Sinde the golden dataset is generated using the BIN method, the authors do not use it for training the ensemble model. Instead, they create a new training dataset partly consisting of $67$ bots from which $57$ author IDs are associated with eight bots and ten author IDs are linked to three other known bots that are not in the golden dataset. Furthermore, $67$ human authors are included via random selection and manual validation. 
+Since the golden dataset is generated using the BIN method, the authors do not use it for training the ensemble model. Instead, they create a new training dataset partly consisting of $67$ bots from which $57$ author IDs are associated with eight bots and ten author IDs are linked to three other known bots that are not in the golden dataset. Furthermore, $67$ human authors are included via random selection and manual validation. 
 
-The output from \textbf{BIN} is a binary value stating if the author ID matched the regular expressions detailed before; the output from \textbf{BIM} is a score, with higher values corresponding to a higher probability of the author being a bot; and the output from \textbf{BICA} is the probability for an author of being a bot.
+The output from \textbf{BIN} is a binary value stating if the author ID matches the regular expressions detailed before; the output from \textbf{BIM} is a score, with higher values corresponding to a higher probability of the author being a bot; and the output from \textbf{BICA} is the probability for an author of being a bot.
 
 \begin{figure}
  \centering
@@ -916,18 +915,18 @@ The output from \textbf{BIN} is a binary value stating if the author ID matched 
 \subsubsection{BIMAN results}
 \label{sssec:dey-results-biman}
 
-\textbf{BIMAN} identifies $58$ ($87\%$) out of $67$ author IDs as bots, and $6$ out of $9$ other IDs could be identified as not actually being a bot via manual investigation, they were either spoofing
-the name or simply using the same name. 
+\textbf{BIMAN} identifies $58$ ($87\%$) out of $67$ author IDs as bots, and $6$ out of $9$ other IDs could be identified as not actually being a bot via manual investigation, they are either
+spoofing the name or simply using the same name. 
 
-\textbf{BIN peformance}:  during creation of the golden dataset, BIN obtained a precision close to $99\%$, which indicates that any author considered to be a bot using this method has a very high probability of being a bot. In general, humans do not try to disguise themselves as bots. The recall measure is not high, because BIN misses many cases where the bots do not explicitly have the substring ``\texttt{bot}'' in their name.
+\textbf{BIN performance}: during creation of the golden dataset, BIN obtains a precision close to $99\%$, which indicates that any author considered to be a bot using this method has a very high probability of being a bot. In general, humans do not try to disguise themselves as bots. The recall measure is not high, because BIN misses many cases where the bots do not explicitly have the substring ``\texttt{bot}'' in their name.
 
 \textbf{BIM performance}: the document template score algorithm solely relies on the commit messages. The AUC-ROC value using the ratio values as predicted probabilities is $0.7$. Some details about the classification output:
 \begin{itemize}
 	\item \textbf{True Positive}: The cases where this model can correctly identify
-bots were cases where the bots actually used templates or repeated the same commit message. 
-    \item \textbf{False Negative}: The cases where this model cannot correctly identify bots were mostly cases where the bots reviewed code added by humans and created a commit message that added a few words with the commit message written by a human.
+bots are cases where the bots actually use templates or repeat the same commit message. 
+    \item \textbf{False Negative}: The cases where this model cannot correctly identify bots are mostly cases where the bots review code added by humans and create a commit message that adds a few words with the commit message written by a human.
     \item \textbf{True Negative}: The human authors correctly identified have some variation in the text, with the usual descriptions of change.
-    \item \textbf{False Positive}: Humans who are misclassified as bots usually had short commit messages that were not descriptive, and they reused the same commit message multiple times.
+    \item \textbf{False Positive}: Humans who are misclassified as bots usually have short commit messages that are not descriptive, and they reuse the same commit message multiple times.
 \end{itemize}
 
 \textbf{BICA performance}: The golden dataset generated using the \textbf{BIN} method is used for training the model and testing its performance. $70\%$ of the data, randomly selected, is used for training the model and the rest $30\%$ is used for testing. This procedure is repeated $100$ times with different random seeds. The model shows good performance, with an AUC-ROC value of $0.89$.
@@ -943,7 +942,7 @@ Among the limitations for this approach, they mention the lack of a golden datas
 
 Moreover, they mention that \textbf{BIM}’s performance varies according to the language of the commit messages (e.g., Spanish and Chinese), and it does not support multilingual sets of commit messages.
 
-They do not address the problem of multiple IDs belonging to the same author, so this was planned as future work to extend the \textbf{BIMAN} method.
+They do not address the problem of multiple IDs belonging to the same author, so this is planned as future work to extend the \textbf{BIMAN} method.
 
 \section{Technologies}
 \label{sec:Technologies}
@@ -966,12 +965,12 @@ The lack of a well-defined strategy also hinders practitioners from understandin
 
 \subsection{GrimoireLab}
 \label{ssec:GrimoireLab}
-GrimoireLab~\footnote{\url{https://chaoss.github.io/grimoirelab/}} is a free, open-source toolset for software development analytics.
+GrimoireLab~\footnote{\url{https://chaoss.github.io/grimoirelab/}} is a free, open-source toolset for producing software development analytics.
 
 This toolset provides a whole platform that supports automatic and incremental data gathering from many tools (data sources or \emph{backends}) related to open-source development (source code management, issue tracking systems, messaging tools, mailing lists, etc.).
 
-Data obtained from these tools is stored in JSON documents following a uniform format, no matter the source. These JSON documents are stored in Elasticsearch and, then, undergo a data enrichment process which adds additional information such time calculations (delays, duration), contributors' affiliation, and more.
-Once the data have been augmented, they can be consumed by visualisation tools and also directly using the Elasticsearch API. GrimoireLab toolset comes with a tool named ``Kibiter'' which is a soft \emph{fork} of Elastic's Kibana. A set of predefined dashboards and visualisations are included for each data source.  
+Data obtained from these tools is stored in JSON documents following a uniform format, no matter the source. These JSON documents are stored in ElasticSearch and, then, undergo a data enrichment process which adds additional information such time calculations (delays, duration), contributors' affiliation, and more.
+Once the data have been augmented, they can be consumed by visualisation tools and also directly using the ElasticSearch API. GrimoireLab toolset comes with a tool named ``Kibiter'' which is a \emph{fork} of Elastic's Kibana. A set of predefined dashboards and visualisations are included for each data source.  
 
 GrimoireLab is part of CHAOSS~\footnote{\url{https://chaoss.community/about-chaoss/}}, a project sponsored by The Linux Foundation. It is mainly developed by the Spanish company Bitergia, and represents an evolution of the work done over more than $10$ years in Bitergia and the LibreSoft research group at Rey Juan Carlos University.
 
@@ -997,7 +996,7 @@ Currently, SortingHat is evolving into a service-based application implementing 
 
 \textbf{Python}~\footnote{\url{https://www.python.org/}} is an interpreted, object-oriented, high-level, open-source
 programming language for general-purpose programming created by Guido van Rossum in 1991~\cite{van2007python}. Nowadays, the most
-recent version is $3.10.0$, from October 2021. Its design is focused on code readability and clear syntax, making
+recent version is $3.11.2$, from February 2023. Its design is focused on code readability and clear syntax, making
 it possible to program using fewer lines of code compared to other programming languages such as \emph{C++} or \emph{Ada}.
 
 \emph{Python} features a large standard library, which includes many tasks from text pattern matching to network
@@ -1039,7 +1038,7 @@ Imbalanced-learn\footnote{\url{https://imbalanced-learn.org/stable/index.html}} 
 \subsubsection{Scikit-learn}
 \label{sssec:scikit-learn}
 
-Scikit-learn\footnote{\url{https://scikit-learn.org}} is largely written in Python, and uses NumPy extensively for high-performance linear algebra and array operations. Furthermore, some core algorithms are written in \emph{Cython} (a superset of the Python language that additionally supports calling \emph{C} functions) to improve performance.
+Scikit-learn\footnote{\url{https://scikit-learn.org}} is largely written in Python, and uses NumPy extensively for high-performance linear algebra and array operations. Furthermore, some core algorithms are written in \emph{Cython} (a super-set of the Python language that additionally supports calling \emph{C} functions) to improve performance.
 
 The classification models proposed and tested for this project are based on this library. 
 
@@ -1133,23 +1132,15 @@ The proposed tool for this project, \emph{Revelio}, aims to provide a report wit
 \section{General architecture} 
 \label{sec:architecture}
 
-\emph{Revelio} is a tool which has been designed to be composed by different modules, to ease its adaptability to future updates and extensions.
-
 \begin{figure}
   \centering
   \includegraphics[width=17cm, keepaspectratio]{img/general-architecture-revelio.png}
-  \caption{General architechture of the \emph{Revelio} tool.}
+  \caption{General architecture of the \emph{Revelio} tool.}
   \label{fig:general-arch-revelio}
 \end{figure}
 
-% \begin{figure}
-%   \centering
-%   \includegraphics[width=7cm, keepaspectratio]{img/revelio-logo.png}
-%   \caption{Logo of the \emph{Revelio} tool.}
-%   \label{fig:logo-revelio}
-% \end{figure}
-
-The tool is composed of different modules (see Figure~\ref{fig:general-arch-revelio}), and each module consists on one or more scripts.
+\emph{Revelio} is a tool which has been designed to be composed by different modules (see Figure~\ref{fig:general-arch-revelio}), to ease its adaptability to future updates and extensions. Each
+of these modules consist on one or more scripts.
 
 As a general description, the tool requires a running GrimoireLab instance to execute. This GrimoireLab instance would contain data from many endpoints stored in an ElasticSearch instance, together with a relational database containing identity information.
 
@@ -1157,7 +1148,7 @@ With the GrimoireLab instance in place, \emph{Revelio} accepts three main input 
 \begin{itemize}
     \item The URL or the IP address of the ElasticSearch instance.
     \item The credentials to access ElasticSearch and SortingHat.
-    \item The index name from ElasticSeach, containing the GrimoreLab-formatted data.
+    \item The index name from ElasticSearch, containing the GrimoireLab-formatted data.
 \end{itemize}
 
 With these input parameters, the tool executes the following steps:
@@ -1172,8 +1163,8 @@ With these input parameters, the tool executes the following steps:
     \item \textbf{Classification}: In this phase, the classification
     models are defined and adjusted. The output of this chain is a
     report containing the results of the classification: An
-    attribute \texttt{is\_detected\_bot} for each individual, and
-    another attribute for the accuracy of the result, \texttt{bot\_acc}.
+    attribute \texttt{is\_bot} for each individual, and
+    another attribute for the accuracy of the result, \texttt{accuracy}.
 \end{enumerate}
 
 In the following sections, the structure and the implementation of the tool are explained. Each main phase from the general structure is more detailed in the diagram from Figure~\ref{fig:process-arch}: keeping the colour code from Figure~\ref{fig:general-arch-revelio}, this diagram shows the sub-modules from each main part of the tool and the execution flow detailed in the sections and subsections below.
@@ -1190,13 +1181,13 @@ In the following sections, the structure and the implementation of the tool are 
 
 \subsection{Selecting the community to analyse}
 \label{ssec:selecting-community}
-In order to create and test the classification models for this project, an initial dataset was needed. After some research, I chose the Wikimedia Foundation community as the target to analyse, as it is a well-known community with a lot of active projects, which many of them use automation tools. 
+In order to create and test the classification models for this project, an initial dataset was needed. After some research, I chose the Wikimedia Foundation community as the target to analyse, as it is a well-known community with a lot of active projects; many of them using automation tools.
 
-Wikimedia Foundation has the ``Wikimedia Tech community metrics dashboard''\footnote{\url{https://wikimedia.biterg.io/}}, which is a running GrimoireLab instance maintained by Bitergia dedicated to get activity metrics from the Wikimedia Tech community. In their public documentation\footnote{\url{https://www.mediawiki.org/wiki/Community_metrics}} (see Figure~\ref{fig:wikimedia-wiki}) it is linked to the list of repositories they are tracking for their community metrics dashboard.
+Wikimedia Foundation has the ``Wikimedia Tech community metrics dashboard''\footnote{\url{https://wikimedia.biterg.io/}}, which is a running GrimoireLab instance dedicated to get activity metrics from the Wikimedia Tech community. In their public documentation\footnote{\url{https://www.mediawiki.org/wiki/Community_metrics}} (see Figure~\ref{fig:wikimedia-wiki}) it is linked to the list of repositories they are tracking for their community metrics dashboard.
 
-I decided to set up a local GrimoireLab instance with a subset of the projects. As the main goal of this project is to detect automated accounts out of human accounts, I decided to apply a first filter to exclude most of Wikimedia's research projects. Research projects usually don't have the desired scale nor the level of activity required for the classification stage. Also, the results could not be as much generalised to other projects and communities.
+Looking closer at the type of projects that were tracked, many research projects were observed. Then, I decided to set up a local GrimoireLab instance with a subset of the projects. As the main goal of this project is to detect automated accounts out of human accounts, I decided to apply a first filter to exclude most of Wikimedia's research projects. Research projects usually don't have the desired scale nor the level of activity required for the classification stage. Also, the results could not be as much generalised to other projects and communities.
 
-As for the selected data sources to analyse, this project is focused on the data from Git. Some of the selected repositories were stored on GitHub, others were stored in a Wikimedia-managed Gerrit instance.
+As for the selected data sources to analyse, this project is focused on the data obtained from Git. Some of the selected repositories were stored on GitHub, others were stored in a Wikimedia-managed Gerrit instance.
 
 \begin{figure}
  \centering
@@ -1208,7 +1199,7 @@ As for the selected data sources to analyse, this project is focused on the data
 \subsection{Setting-up the GrimoireLab instance}
 \label{ssec:setting-grimoirelab}
 
-With this information, I deployed a local instance of GrimoireLab (Figure~\ref{fig:local-grimoirelab-git}) by using a Docker-compose file available on GrimoireLab repository, configuring both the sources file, with the selected subset of repositories to analyse, and the setup configuration file, including:
+With this information, I deployed a local instance of GrimoireLab (Figure~\ref{fig:local-grimoirelab-git}) by using a Docker-compose file available on GrimoireLab repository, configuring the sources file, with the selected subset of repositories to analyse; and the setup configuration file, including:
 \begin{itemize}
     \item The name of the instance.
     \item The set-up parameters for the identities' management tool, \emph{SortingHat}.
@@ -1225,7 +1216,7 @@ Once the platform is running, GrimoireLab instance performs many operations:
 \begin{figure}
  \centering
   \includegraphics[width=15cm, keepaspectratio]{img/local-instance-grimoirelab-1.png}
-  \caption{Git Overview dashboard from the local GrimoireLab instance.}
+  \caption{Dashboard showing the Git data obtained with GrimoireLab locally, after curating identities information.}
   \label{fig:local-grimoirelab-git}
 \end{figure}
 
@@ -1300,7 +1291,7 @@ In summary, the \texttt{git} index stores one document per commit, with a set of
 \subsection{Querying the data from ElasticSearch}
 \label{ssec:querying-es}
 
-A set of metrics were defined following the GQM approach~\footnote{These metrics can be found as  additional content in the Jupyter Notebook dedicated to the Exploratory Data Analysis: \url{https://mafesan.github.io/Memoria-TFM/exploratory-data-analysis.html}.}~\cite{Basili94-gqm}. The next step is selecting the proper fields from the ElasticSearch index that will allow obtaining such metrics, listed in Table~\ref{table:es-git-selected-fields}.
+A set of metrics were defined following the GQM approach~\footnote{These metrics can be found as additional content on the website of the project, in the ``Exploratory Data Analysis'' Notebook.}~\cite{Basili94-gqm}. The next step is selecting the proper fields from the ElasticSearch index that will allow obtaining such metrics, listed in Table~\ref{table:es-git-selected-fields}.
 
 ElasticSearch is a search engine that behaves similarly to a NoSQL database. As the stored entities are single documents, the data need to be aggregated in some way. ElasticSearch has two basic types of aggregations: \textbf{metrics} and \textbf{buckets}. As their documentation explains:
 \begin{itemize}
@@ -1336,7 +1327,7 @@ The output is a set of JSON files, one for each unique contributor, containing t
       \texttt{author\_name} & Author name from SortingHat. \\
       \texttt{author\_uuid} & Author UUID from SortingHat. \\
       \texttt{commit\_date\_weekday} & Day of the week when the committer made the commit. \\
-      \texttt{commit\_name} & Committer name \\
+      \texttt{commit\_name} & Committer name. \\
       \texttt{files} & Number of files touched by this commit. \\
       \texttt{grimoire\_creation\_date} & Commit date (when the original author made the commit). \\
       \texttt{hash} & Commit hash. \\
@@ -1494,7 +1485,7 @@ The Table~\ref{table:transformation-quantitative} summarises how the variables w
 \label{sssec:transformation-qualitative}
 
 Although most of the variables from this dataset are quantitative, the statistical distribution of some of them points to a need to generate 
-qualitative, binary variables which derive from them. Looking at the graphical representations, the referenced variables counting the number of commits under a given condition usually have some bias: observing the statistical distribution, the general rule is finding  a peak at $0$ and then the rest of results are very spread over the histogram. 
+qualitative, binary variables which derive from them. Looking at the graphical representations\footnote{These graphs are available in the ``Exploratory Data Analysis'' Notebook, in the project's code repository.}, the referenced variables counting the number of commits under a given condition usually have some bias: observing the statistical distribution, the general rule is finding  a peak at $0$ and then the rest of results are very spread over the histogram. 
 
 Following this reasoning, these variables were transformed into binary variables, with the intention of translating the major difference between these values in a conceptual way: For instance, looking at the number of \textit{merge} commits, instead of counting how many of them there are, it could be enough to know just if a given author submitted merge commits or not.
 
@@ -1520,7 +1511,7 @@ Following this reasoning, these variables were transformed into binary variables
 
 On the other hand, I composed a list of heuristic terms (see Table~\ref{table:common-bot-terms}) belonging to the application domain, using the terminology of tasks that bots are usually performing during the software development process.  The first approach was to create a set of dummy variables with one column per term, where the value is $1$ (\textbf{True}) when the term from that column is included in the author's name; and $0$ (\textbf{False}) if it is not included. For instance, a user named \texttt{ghmerger} would have a $1$ value in the `merge` and `merger` columns, and a $1$ value in the rest of the columns. 
 
-Nonetheless, this approach was adding too much complexity to the system. After several experiments from chapter~\ref{chap:experiments}), the decision was to summarise the inclusion of these terms into a ``terms score''. The idea was to classify the heuristic terms in three different levels assigning weights to each of them, according to their relevance in the application domain. Doing so, an author name having one or more terms from the list would have a greater value, also taking into account their relevance by using these levels. Having a score of $0$ means the \texttt{author\_name} field doesn't include any of the relevant terms. The formula to compute this terms score is available at Section~\ref{sec:terms-score-definition}, and the definition of these three levels is available at Table~\ref{table:levels-bot-terms}. 
+Nonetheless, this approach was adding too much complexity to the system. After several experiments from Chapter~\ref{chap:experiments}, the decision was to summarise the inclusion of these terms into a ``terms score''. The idea was to classify the heuristic terms in three different levels assigning weights to each of them, according to their relevance in the application domain. Doing so, an author name having one or more terms from the list would have a greater value, also taking into account their relevance by using these levels. Having a score of $0$ means the \texttt{author\_name} field doesn't include any of the relevant terms. The formula to compute this terms score is available at Section~\ref{sec:terms-score-definition}, and the definition of these three levels is available at Table~\ref{table:levels-bot-terms}. 
 
 \begin{table}[htb]  % [htb] suggests table position in page
                     % h: here; t: top; b: bottom
@@ -1631,7 +1622,7 @@ To apply SMOTE, we rely on the implementation under the \texttt{over\_sampling} 
 \begin{figure}
  \centering
   \includegraphics[width=17cm, keepaspectratio]{img/author_bot_SMOTE_train.png}
-  \caption{Effect of applying SMOTE over the training dataset on the target variable; before (left) and after (right)}
+  \caption{Effect of applying SMOTE over the training dataset on the target variable; before (left) and after (right).}
   \label{fig:smote-train}
 \end{figure}
 
@@ -1645,18 +1636,18 @@ The initial idea was to split the corresponding variables from these two groups 
 \subsection{Models definition}
 \label{ssec:models-definition}
 
-In this subsection, the classification models considered for this project are explained in more depth~\footnote{The mathematical definitions are extracted from the book ``An Introduction to Statistical Learning''~\cite{introstatlearning}}. The decision was to select a set of models based on the ones used in the reference scientific papers described in chapter~\ref{chap:state-art}. The tests and results from applying these classification models to our dataset are presented in Section~\ref{sec:exp-classification-models}.
+In this subsection, the classification models considered for this project are explained in more depth~\footnote{The mathematical definitions are extracted from the book ``An Introduction to Statistical Learning''~\cite{introstatlearning}}. The decision was to select a set of models based on the ones used in the reference scientific papers described in Chapter~\ref{chap:state-art}. The tests and results from applying these classification models to our dataset are presented in Section~\ref{sec:exp-classification-models}.
 
-\subsubsection{Naïve-Bayes}
+\subsubsection{Naive-Bayes}
 \label{sssec:gaussian-naive-bayes}
 
-\textit{\textbf{Naïve-Bayes}} supervised-learning algorithms are based on Bayes’ theorem. They belong to the Probability-based learning family, and their approach is to use estimations of likelihoods to determine the most likely predictions that should be made and review them later, based on the available data and also extra evidence whenever it becomes available.
+\textit{\textbf{Naive-Bayes}} supervised-learning algorithms are based on Bayes’ theorem. They belong to the Probability-based learning family, and their approach is to use estimations of likelihoods to determine the most likely predictions that should be made and review them later, based on the available data and also extra evidence whenever it becomes available.
 
-\textit{Naïve-Bayes} classifiers are especially useful for problems with many input variables, categorical input variables with a vast number of possible values, and text classification. Among the advantages of using these classification models are their simplicity to apply (generally, no parameters to be adjusted) and their resistance to over-fitting.
+\textit{Naive-Bayes} classifiers are especially useful for problems with many input variables, categorical input variables with a vast number of possible values, and text classification. Among the advantages of using these classification models are their simplicity to apply (generally, no parameters to be adjusted) and their resistance to over-fitting.
 
-The selected classifier was the \textbf{Gaussian Naïve-Bayes} algorithm implemented in Scikit-learn (\texttt{GaussianNB}\footnote{\url{https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html}}, under \texttt{naive\_bayes} module). Mathematically, the definition for this classification model can be expressed as follows:
+The selected classifier was the \textbf{Gaussian Naive-Bayes} algorithm implemented in Scikit-learn (\texttt{GaussianNB}\footnote{\url{https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html}}, under \texttt{naive\_bayes} module). Mathematically, the definition for this classification model can be expressed as follows:
 
-Being $p_{k}(x)$ the posterior probability of an observation $x$ to belong to the class $k$, which is defined as $p_{k}(x)= Pr(Y = k|X = x)$, in terms of $\pi_{1},...,\pi_{k}$ and $f_{1}(x),...,f_{k}(x)$, where $\pi_{1},...,\pi_{k}$ are the prior probabilities and $f_{1}(x),...,f_{k}(x)$ are the $p$-dimensional density functions for an observation in the $k$-th class for $k=1,...,K$; the Naïve-Bayes classifier makes a single assumption for estimating $f_{1}(x),...,f_{k}(x)$ functions: Within the $k$-th class, the $p$-predictors are independent.
+Being $p_{k}(x)$ the posterior probability of an observation $x$ to belong to the class $k$, which is defined as $p_{k}(x)= Pr(Y = k|X = x)$, in terms of $\pi_{1},...,\pi_{k}$ and $f_{1}(x),...,f_{k}(x)$, where $\pi_{1},...,\pi_{k}$ are the prior probabilities and $f_{1}(x),...,f_{k}(x)$ are the $p$-dimensional density functions for an observation in the $k$-th class for $k=1,...,K$; the Naive-Bayes classifier makes a single assumption for estimating $f_{1}(x),...,f_{k}(x)$ functions: Within the $k$-th class, the $p$-predictors are independent.
 
 With this assumption, we can obtain an expression for the posterior probability,
 
@@ -1679,11 +1670,9 @@ is that a test observation is assigned to a class depending on which side of
 the hyperplane it is located.
 
 Nonetheless, observations that belong to two classes are not
-necessarily separable by a hyperplane. In fact, even if a separating hyper-
-plane does exist, then there are instances in which a classifier based on
-a separating hyperplane might not be desirable. A classifier based on a
-separating hyperplane will necessarily perfectly classify all of the training
-observations; this can lead to sensitivity to individual observations and implies
+necessarily separable by a hyperplane. In fact, even if a \textit{separating hyperplane} does exist, then there are instances in which a classifier based on
+a \textit{separating hyperplane} might not be desirable, as it will necessarily perfectly classify all of the training
+observations. This can lead to sensitivity to individual observations and implies
 that it may have overfitted the training data.
 
 That is, it could be worthwhile to misclassify a few training observations
@@ -1704,7 +1693,7 @@ misclassify a few observations. Taking the mathematical definition of a $p$-dime
 \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + ... + \beta_{p}X_{p} = 0 \quad,
 \end{equation}
 \end{center}
-the separating hyperplane is the solution to this optimization problem:
+the separating hyperplane is the solution to this optimisation problem:
 \begin{center}
 \begin{equation}
 maximize\ M (\beta_{0}, \beta_{1},...,\beta_{p}, \epsilon_{0}
@@ -1865,15 +1854,19 @@ Looking at the possible values we can obtain, it is worth mentioning that not al
 
 This situation links directly to the definition of two basic metrics: \emph{precision} and \emph{recall}. As it is defined in Scikit-learn's documentation page\footnote{\url{https://scikit-learn.org/stable/modules/model_evaluation.html\#precision-recall-f-measure-metrics}}, an intuitive definition of precision is the ability of the classifier not to label as positive a sample that is negative, and recall is the ability of the classifier to find all the positive samples.
 
-\newpage
-Precision and recall are defined mathematically as:
+Precision is defined mathematically as:
+
 \begin{center}
 \begin{equation}
-Precision = \frac{tp}{tp+fp}
+Precision = \frac{tp}{tp+fp} \quad,
 \end{equation}
+\end{center}
 
+and recall is defined as: 
+
+\begin{center}
 \begin{equation}
-Recall = \frac{tp}{tp+fn}
+Recall = \frac{tp}{tp+fn} \quad.
 \end{equation}
 \end{center}
 
@@ -1931,7 +1924,7 @@ As this distance had to be computed per every single pair of messages, the resul
 
 \begin{center}
     \begin{equation}
-    \mathrm{NumCalculations} = \frac{( NumMessages )^2}{2}
+    \mathrm{NumCalculations} = \frac{( NumMessages )^2}{2} \quad.
     \end{equation}
 \end{center}
 
@@ -1955,7 +1948,7 @@ Aside from these complications, the next problem was to compare all these matric
 
 In this phase of the experiment process, the goal is to train the classification models we defined (\ref{ssec:models-definition}) and test their performance against our dataset. Then, after having the results using the proposed evaluation metrics (\ref{ssec:evaluation-metrics}) we will choose the best classifier. This whole process is detailed in Figure~\ref{fig:model-classification-process}, and it starts with the splitting of our initial dataset into three sets (Training, Test, and Validation), following the criteria we discussed at subsection~\ref{ssec:build-training-datasets} and then apply the pre-processing step: the transformation and selection of features (over the Training and Test datasets) and also applying SMOTE to mitigate the effect of the imbalance of the classes.
 
-At this point, the decision was to show how the samples from the Training set were distributed using the t-SNE algorithm, a nonlinear dimensionality reduction technique~\cite{vandermaaten-et-at:t-sne08}. This way we could convert our high-dimensional dataset into a two-dimensional one, preserving the distance between the samples in the new dimensional space. In Figures~\ref{fig:data-tsne} and~\ref{fig:data-tsne-smote} we can observe the resized Training dataset before and applying SMOTE, respectively: In the first image (Figure~\ref{fig:data-tsne}), we can observe very few occurrences of positive bot accounts, and heavily mixed among the rest of the samples from the other class; while in the second image (Figure~\ref{fig:data-tsne-smote}) we can observe a much clearer distinction between the two classes, after the synthetic samples generated by SMOTE. Apart from the interesting pattern these samples are forming, we infer that there should be a classification model capable of separating both classes.
+At this point, the decision was to show how the samples from the Training set were distributed using the t-SNE algorithm, a nonlinear dimensionality reduction technique~\cite{vandermaaten-et-at:t-sne08}. This way we could convert our high-dimensional dataset into a two-dimensional one, preserving the distance between the samples in the new dimensional space. In Figures~\ref{fig:data-tsne} and~\ref{fig:data-tsne-smote} we can observe the resized Training dataset before and after applying SMOTE, respectively: In the first image (Figure~\ref{fig:data-tsne}), we can observe very few occurrences of positive bot accounts, and heavily mixed among the rest of the samples from the other class; while in the second image (Figure~\ref{fig:data-tsne-smote}) we can observe a much clearer distinction between the two classes, after the synthetic samples generated by SMOTE. Apart from the interesting pattern these samples are forming, we infer that there should be a classification model capable of separating both classes.
 
 \begin{figure}
  \centering
@@ -2161,7 +2154,7 @@ Looking at feature importance values (see Figure~\ref{fig:rf-feature-importance}
 
 In this chapter, we recap the outcomes, achievements, and limitations of this project, after the objectives described in Section~\ref{sec:objectives}.
 
-This project has been a long and complicated run. Although the main idea for the project was clear, the nature of the target problem implied a huge variety of problems and challenges. Likewise, the project developments was affected by a global pandemic, which delayed and hinder its completion. Despite having faced many setbacks and limitations along the process, it is safe to say we are now able to provide answers to our initial objectives and also, enlighten the road for future work on this matter. Some of our hypotheses could not be bested, and some solutions did not work; but on the other hand, we found new research lines and solutions to explore in the future, gaining very valuable knowledge and experience along the journey.
+This project has been a long and complicated run. Although the main idea for the project was clear, the nature of the target problem implied a huge variety of problems and challenges. Likewise, the project development was affected by a global pandemic, which delayed and hinder its completion. Despite having faced many setbacks and limitations along the process, it is safe to say we are now able to provide answers to our initial objectives and also, enlighten the road for future work on this matter. Some of our hypotheses could not be bested, and some solutions did not work; but on the other hand, we found new research lines and solutions to explore in the future, gaining very valuable knowledge and experience along the journey.
 
 \section{Goal achievements}
 \label{sec:goal-achievements}
@@ -2198,7 +2191,7 @@ Specifically, these were the most relevant courses for this project:
 \item \textbf{Fundamentos de Análisis de Datos} (Fundamentals of Data Analysis): This introductory course provided me with the context of the cycle of Data Science and the process behind a complete analysis.
 \item \textbf{Machine Learning I} and \textbf{II}: These courses were especially valuable because their contents focus on classification and prediction models and a variety of techniques used along the process.
 \item \textbf{Programación Orientada a Ciencia de Datos} (Data Science-oriented Programming): This course gave me the opportunity to gain more experience and knowledge to deal with the Data Science-related Python modules and tools.
-\item \textbf{Text Mining}: In this course, I discovered a new field to explore, with concepts and techniques necessary for processing natural language.
+\item \textbf{Text Mining}: In this course, I discovered a new field to explore, with concepts and techniques necessary for natural language.
 \end{enumerate}
 
 \section{Lessons learned}
